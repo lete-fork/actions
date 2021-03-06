@@ -11,8 +11,8 @@ jobs:
     steps:
      - uses: actions/checkout@master
 
-     - name: Try Build
-       run: ./not-exist-file.sh it bloke build
+#      - name: Try Build
+#        run: ./not-exist-file.sh it bloke build
 
      - name: Start SSH via Ngrok
        if: ${{ failure() }}
