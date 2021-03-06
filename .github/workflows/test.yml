@@ -1,0 +1,26 @@
+name: SSH
+on:
+  schedule:
+    - cron: "0 ？ * * *"
+  watch:
+    types: [started]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    if: github.event.repository.owner.id == github.event.sender.id  
+    steps:
+     - uses: actions/checkout@master
+
+     - name: Try Build
+       run: ./not-exist-file.sh it bloke build
+
+     - name: Start SSH via Ngrok
+       if: ${{ failure() }}
+       run: ./actions-ngrok.sh
+       #run: curl -sL https://proxy.xiaofeiya.tk/debug-github-actions.sh | bash
+       env:
+        NGROK_TOKEN: 1pNA4nlnFPRz2xm78I1hTy0tbsp_LH3o4ziVQdzhLZ9McPGR
+        USER_PASS: root
+     - name: Don't kill instace
+       if: ${{ failure() }}
+       run: sleep 1h
