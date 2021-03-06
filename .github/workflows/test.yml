@@ -1,7 +1,7 @@
 name: SSH
 on:
-  schedule:
-    - cron: "60 * * * *"
+#   schedule:
+#     - cron: "60 * * * *"
   watch:
     types: [started]
 jobs:
